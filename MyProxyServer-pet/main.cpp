@@ -1,25 +1,20 @@
 #include <iostream>
 #include <boost/asio.hpp>
+#include "SocketManager.h"
 
-int main()
+int main() 
 {
-    // Создаем экземпляр класса io_service
+    // Создаем io_service для управления асинхронными операциями
     boost::asio::io_service ioService;
 
-    // Создаем объект acceptor для прослушивания входящих соединений
-    boost::asio::ip::tcp::acceptor acceptor(ioService, boost::asio::ip::tcp::endpoint(boost::asio::ip::tcp::v4(), 8080));
+    // Создаем экземпляр SocketManager для управления сокетами
+    SocketManager socketManager(ioService, 8080);
 
-    // Бесконечный цикл ожидания входящих соединений
-    while (true)
-    {
-        // Создаем сокет для установки соединения с клиентом
-        boost::asio::ip::tcp::socket socket(ioService);
+    // Начинаем прослушивание входящих соединений
+    socketManager.startListening();
 
-        // Принимаем входящее соединение и связываем его с созданным сокетом
-        acceptor.accept(socket);
-
-        // Далее следует код для обработки соединений...
-    }
+    // Запускаем io_service
+    ioService.run();
 
     return 0;
 }
