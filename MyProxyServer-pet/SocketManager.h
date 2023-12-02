@@ -1,23 +1,23 @@
-#pragma once
+п»ї#pragma once
 
 #include <boost/asio.hpp>
 
 class SocketManager 
 {
 public:
-    // Конструктор, инициализирующий acceptor и socket
+    // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ, РёРЅРёС†РёР°Р»РёР·РёСЂСѓСЋС‰РёР№ acceptor Рё socket
     SocketManager(boost::asio::io_service& ioService, short port);
 
-    // Метод для начала прослушивания входящих соединений
+    // РњРµС‚РѕРґ РґР»СЏ РЅР°С‡Р°Р»Р° РїСЂРѕСЃР»СѓС€РёРІР°РЅРёСЏ РІС…РѕРґСЏС‰РёС… СЃРѕРµРґРёРЅРµРЅРёР№
     void startListening();
 
-    // Обработчик завершения операции async_accept
+    // РћР±СЂР°Р±РѕС‚С‡РёРє Р·Р°РІРµСЂС€РµРЅРёСЏ РѕРїРµСЂР°С†РёРё async_accept
     void handleAccept(const boost::system::error_code& error);
 
 private:
-    // Acceptor для прослушивания входящих соединений
+    // Acceptor РґР»СЏ РїСЂРѕСЃР»СѓС€РёРІР°РЅРёСЏ РІС…РѕРґСЏС‰РёС… СЃРѕРµРґРёРЅРµРЅРёР№
     boost::asio::ip::tcp::acceptor acceptor_;   
 
-    // Сокет для обработки соединений
+    // РЎРѕРєРµС‚ РґР»СЏ РѕР±СЂР°Р±РѕС‚РєРё СЃРѕРµРґРёРЅРµРЅРёР№
     boost::asio::ip::tcp::socket socket_;
 };

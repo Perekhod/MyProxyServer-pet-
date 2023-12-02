@@ -1,11 +1,11 @@
-#include "SocketManager.h"
+п»ї#include "SocketManager.h"
 
-// Конструктор, инициализирующий acceptor и socket
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ, РёРЅРёС†РёР°Р»РёР·РёСЂСѓСЋС‰РёР№ acceptor Рё socket
 SocketManager::SocketManager(boost::asio::io_service& ioService, short port)
     : acceptor_(ioService, boost::asio::ip::tcp::endpoint(boost::asio::ip::tcp::v4(), port)),
     socket_(ioService) {}
 
-// Метод для начала прослушивания входящих соединений
+// РњРµС‚РѕРґ РґР»СЏ РЅР°С‡Р°Р»Р° РїСЂРѕСЃР»СѓС€РёРІР°РЅРёСЏ РІС…РѕРґСЏС‰РёС… СЃРѕРµРґРёРЅРµРЅРёР№
 void SocketManager::startListening() 
 {
     acceptor_.async_accept(socket_,
@@ -16,14 +16,14 @@ void SocketManager::startListening()
     );
 }
 
-// Обработчик завершения операции async_accept
+// РћР±СЂР°Р±РѕС‚С‡РёРє Р·Р°РІРµСЂС€РµРЅРёСЏ РѕРїРµСЂР°С†РёРё async_accept
 void SocketManager::handleAccept(const boost::system::error_code& error) 
 {
     if (!error) 
     {
-        // Здесь можно добавить код для обработки нового соединения
+        // Р—РґРµСЃСЊ РјРѕР¶РЅРѕ РґРѕР±Р°РІРёС‚СЊ РєРѕРґ РґР»СЏ РѕР±СЂР°Р±РѕС‚РєРё РЅРѕРІРѕРіРѕ СЃРѕРµРґРёРЅРµРЅРёСЏ
     }
 
-    // Продолжаем прослушивание для новых соединений
+    // РџСЂРѕРґРѕР»Р¶Р°РµРј РїСЂРѕСЃР»СѓС€РёРІР°РЅРёРµ РґР»СЏ РЅРѕРІС‹С… СЃРѕРµРґРёРЅРµРЅРёР№
     startListening();
 }

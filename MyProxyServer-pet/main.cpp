@@ -1,19 +1,19 @@
-#include <iostream>
+п»ї#include <iostream>
 #include <boost/asio.hpp>
 #include "SocketManager.h"
 
 int main() 
 {
-    // Создаем io_service для управления асинхронными операциями
+    // РЎРѕР·РґР°РµРј io_service РґР»СЏ СѓРїСЂР°РІР»РµРЅРёСЏ Р°СЃРёРЅС…СЂРѕРЅРЅС‹РјРё РѕРїРµСЂР°С†РёСЏРјРё
     boost::asio::io_service ioService;
 
-    // Создаем экземпляр SocketManager для управления сокетами
+    // РЎРѕР·РґР°РµРј СЌРєР·РµРјРїР»СЏСЂ SocketManager РґР»СЏ СѓРїСЂР°РІР»РµРЅРёСЏ СЃРѕРєРµС‚Р°РјРё
     SocketManager socketManager(ioService, 8080);
 
-    // Начинаем прослушивание входящих соединений
+    // РќР°С‡РёРЅР°РµРј РїСЂРѕСЃР»СѓС€РёРІР°РЅРёРµ РІС…РѕРґСЏС‰РёС… СЃРѕРµРґРёРЅРµРЅРёР№
     socketManager.startListening();
 
-    // Запускаем io_service
+    // Р—Р°РїСѓСЃРєР°РµРј io_service
     ioService.run();
 
     return 0;
