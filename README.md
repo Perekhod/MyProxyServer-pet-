@@ -1,1 +1,1 @@
-# MyProxyServer-pet-
+# MyProxyServer (pet project)
