@@ -12,17 +12,20 @@ public:
     // Метод для начала прослушивания входящих соединений
     void startListening();
 
-    // Обработчик завершения операции async_accept
+    // Метод обработки завершения операции async_accept
     void handleAccept(const boost::system::error_code& error);
 
-    // Обработчик данных
+    // Метод обработки данных
     void handleData(const boost::system::error_code& error, std::size_t bytes_transferred);
 
     // Метод для обработки данных и перенаправления
     void forwardData(const boost::system::error_code& error, std::size_t bytes_transferred);
 
-    // Метод для обработки ошибок и закрытия соединений
-    void handleError(const boost::system::error_code& error);
+    // Метод для обработки ошибок при асинхронном чтении
+    void handleReadError(const boost::system::error_code& error);
+
+    // Метод для обработки ошибок при асинхронной записи
+    void handleWriteError(const boost::system::error_code& error);
 
 private:
     // Acceptor для прослушивания входящих соединений
@@ -34,11 +37,14 @@ private:
     // Буфер для приема/отправки данных
     std::array<char, 8192> buffer_;
 
-    // Новые члены для хранения данных о целевом сервере
+    // Члены для хранения данных о целевом сервере
     std::string targetHost_;
     short targetPort_;
     boost::asio::ip::tcp::socket targetSocket_;
 
-    // Новый буфер для хранения данных от клиента и для отправки на целевой сервер
+    // Буфер для хранения данных от клиента и для отправки на целевой сервер
     std::array<char, 8192> clientBuffer_;
+
+    // Объект strand для безопасности многопоточности
+    boost::asio::io_service::strand strand_;
 };
