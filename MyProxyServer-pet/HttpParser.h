@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 
 #include <string>
 #include <boost/beast/http.hpp>
@@ -6,6 +6,6 @@
 class HttpParser
 {
 public:
-    // Метод для разбора HTTP-запроса
+    // РњРµС‚РѕРґ РґР»СЏ СЂР°Р·Р±РѕСЂР° HTTP-Р·Р°РїСЂРѕСЃР°
     static void parserHttpRequest(const std::string& httpRequestString);
 };
