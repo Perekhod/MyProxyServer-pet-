@@ -2,10 +2,10 @@
 
 // Конструктор, инициализирующий acceptor и socket
 SocketManager::SocketManager(boost::asio::io_service& ioService, short port)
-    : acceptor_(ioService, boost::asio::ip::tcp::endpoint(boost::asio::ip::tcp::v4(), port)),
-    socket_(ioService),
-    targetSocket_(ioService),
-    strand_(ioService) {}
+    :   acceptor_       (ioService, boost::asio::ip::tcp::endpoint(boost::asio::ip::tcp::v4(), port)),
+        socket_         (ioService),
+        targetSocket_   (ioService),
+        strand_         (ioService) {}
 
 // Метод для начала прослушивания входящих соединений
 void SocketManager::startListening() 
@@ -32,7 +32,6 @@ void SocketManager::handleAccept(const boost::system::error_code& error)
             }
         );
     }
-
     // Продолжаем прослушивание для новых соединений
     startListening();
 }
